@@ -26,6 +26,7 @@ HTML5, CSS3, JavaScript
 
 
 Estrutura do Projeto:
+```
 FitShop/
 ├── index.html                  # Página inicial
 ├── produto.html                # Página do produto
@@ -53,3 +54,4 @@ FitShop/
 │       └── logos/              # Logos e ícones
 │
 └── README.md
+```
