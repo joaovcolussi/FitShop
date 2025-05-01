@@ -1,11 +1,11 @@
-📌 Projeto: FitShop com HTML, CSS e JavaScript
+# 📌 Projeto: FitShop com HTML, CSS e JavaScript
 🗓️ [Data de início – Data de conclusão]
 🔗 [Link para o repositório GitHub ou deploy (opcional, mas recomendável)]
 
-Descrição:
+## Descrição:
 
 
-Principais páginas e funcionalidades:
+## Principais páginas e funcionalidades:
 
 🛒 Tela de Produto e Tela de Carrinho
 
@@ -21,12 +21,12 @@ Principais páginas e funcionalidades:
 
 💡 Interações com JavaScript para filtros, validações de formulários e manipulação do carrinho
 
-Tecnologias utilizadas:
+## Tecnologias utilizadas:
 HTML5, CSS3, JavaScript
 
 
-Estrutura do Projeto:
-```
+## Estrutura do Projeto:
+```bash
 FitShop/
 ├── index.html                  # Página inicial
 ├── produto.html                # Página do produto
