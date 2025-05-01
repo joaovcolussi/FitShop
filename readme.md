@@ -1,6 +1,6 @@
 # 📌 Projeto: FitShop com HTML, CSS e JavaScript
 🗓️ [Data de início – Data de conclusão]
-🔗 [Link para o repositório GitHub](github.com/joaovcolussi/FitShop)
+🔗 [Link para o repositório Github](https://github.com/joaovcolussi/FitShop)
 
 ## Descrição:
 
