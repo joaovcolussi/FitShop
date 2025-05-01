@@ -27,7 +27,6 @@ HTML5, CSS3, JavaScript
 
 Estrutura do Projeto:
 FitShop/
-│
 ├── index.html                  # Página inicial
 ├── produto.html                # Página do produto
 ├── carrinho.html               # Carrinho de compras
@@ -37,18 +36,20 @@ FitShop/
 │   ├── painel.html             # Painel administrativo
 │   ├── cadastro-produto.html   # Cadastro de produto
 │   ├── editar-produto.html     # Edição de produto
-│   ├── cadastro-categoria.html# Cadastro de categoria
+│   ├── cadastro-categoria.html # Cadastro de categoria
 │   └── editar-categoria.html   # Edição de categoria
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css           # Estilos gerais
+│   │   ├── style.css           # Estilos gerais
 │   │   └── adm.css             # Estilos do painel administrativo
+│   │
 │   ├── js/
-│   │   └── main.js             # Scripts gerais do site
+│   │   ├── main.js             # Scripts gerais do site
 │   │   └── adm.js              # Scripts para área administrativa
+│   │
 │   └── img/
-│       └── produtos/           # Imagens dos produtos
+│       ├── produtos/           # Imagens dos produtos
 │       └── logos/              # Logos e ícones
 │
-└── README.md  
+└── README.md
