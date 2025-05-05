@@ -1,16 +1,27 @@
 .header-container{
+  display: flex;
   background-color: #0000A3;
-  width: 1920px;
-  height: 130px;
 }
 
 .logo-fitshop{
+  display: flex;
   width: 150px;
   height: 150px;
   position: relative;
-  margin-left: 20px;
   right: 20px;
-  bottom: 15px;
+  justify-content: flex-start;
+}
+
+.cabecalho__menu__link{
+  background-color: white;
+  border: 2px solid;
+  display: flex;
+  margin: 50px;
+  padding: 10px;  
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10%;
+  
 }
 
 
