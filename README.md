@@ -33,7 +33,7 @@ npm run dev
 💡 Interações com JavaScript para filtros, validações de formulários e manipulação do carrinho
 
 ## Tecnologias utilizadas:
-HTML5, CSS3, JavaScript
+HTML5, CSS3, Typescript
 
 ##Frameworks:
 Vue
@@ -71,7 +71,7 @@ C#
 │   │   ├── Home.vue
 │   │   └── Produto.vue
 │   ├── services/
-│   │   └── api.ts
+│   │   └── api_whatsapp.ts
 │   ├── stores/
 │   │   └── carrinho.ts
 │   ├── App.vue
