@@ -2,7 +2,18 @@
 🗓️ [Data de início – Data de conclusão]
 🔗 [Link para o repositório Github](https://github.com/joaovcolussi/FitShop)
 
+
+## Iniciar o projeto:
+```
+npm install
+```
+```
+npm run dev
+```
+
 ## Descrição:
+
+
 
 
 ## Principais páginas e funcionalidades:
