@@ -76,7 +76,6 @@ const toggleMenuCategoria = () => {
           </router-link>
           
           <router-link to="/admin" class="cabecalho__admin">
-            <span class="cabecalho__admin-icone">👤</span>
             <span class="cabecalho__admin-texto">Admin</span>
           </router-link>
         </div>
