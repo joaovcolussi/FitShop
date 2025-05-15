@@ -1,0 +1,309 @@
+// Variáveis
+:root {
+  // Cores primárias
+  --cor-primaria: #0000A3;
+  --cor-primaria-clara: #3232d1;
+  --cor-primaria-escura: #000080;
+  
+  // Cores secundárias
+  --cor-secundaria: #FF5722;
+  --cor-secundaria-clara: #ff7e4e;
+  --cor-secundaria-escura: #c41c00;
+  
+  // Cores neutras
+  --cor-branco: #ffffff;
+  --cor-cinza-claro: #f5f5f5;
+  --cor-cinza: #cccccc;
+  --cor-cinza-escuro: #666666;
+  --cor-preto: #212121;
+  
+  // Cores de estado
+  --cor-sucesso: #4CAF50;
+  --cor-alerta: #FFC107;
+  --cor-erro: #F44336;
+  
+  // Espaçamento
+  --espacamento-pequeno: 8px;
+  --espacamento-medio: 16px;
+  --espacamento-grande: 24px;
+  --espacamento-extra-grande: 32px;
+  
+  // Tipografia
+  --fonte-familia: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  --fonte-tamanho-pequeno: 12px;
+  --fonte-tamanho-base: 16px;
+  --fonte-tamanho-medio: 18px;
+  --fonte-tamanho-grande: 24px;
+  --fonte-tamanho-extra-grande: 32px;
+  
+  // Bordas
+  --borda-raio: 4px;
+  --borda-raio-grande: 8px;
+  
+  // Sombras
+  --sombra-pequena: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --sombra-media: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --sombra-grande: 0 8px 16px rgba(0, 0, 0, 0.1);
+  
+  // Animações
+  --transicao-padrao: all 0.3s ease;
+}
+
+// Reset
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--fonte-tamanho-base);
+  font-family: var(--fonte-familia);
+}
+
+body {
+  background-color: var(--cor-cinza-claro);
+  color: var(--cor-preto);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+  transition: var(--transicao-padrao);
+  
+  &:hover {
+    color: var(--cor-primaria-clara);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+// Layout principal
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  &__conteudo {
+    flex: 1;
+    padding: var(--espacamento-medio);
+    
+    @media (min-width: 768px) {
+      padding: var(--espacamento-grande);
+    }
+  }
+}
+
+// Classes utilitárias
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--espacamento-medio);
+}
+
+// Botões
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacamento-pequeno) var(--espacamento-medio);
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+  border: none;
+  border-radius: var(--borda-raio);
+  font-weight: 500;
+  transition: var(--transicao-padrao);
+  
+  &:hover {
+    background-color: var(--cor-primaria-clara);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+  
+  &--secundario {
+    background-color: var(--cor-secundaria);
+    
+    &:hover {
+      background-color: var(--cor-secundaria-clara);
+    }
+  }
+  
+  &--contorno {
+    background-color: transparent;
+    border: 1px solid var(--cor-primaria);
+    color: var(--cor-primaria);
+    
+    &:hover {
+      background-color: var(--cor-primaria);
+      color: var(--cor-branco);
+    }
+  }
+  
+  &--pequeno {
+    padding: 4px 8px;
+    font-size: var(--fonte-tamanho-pequeno);
+  }
+  
+  &--grande {
+    padding: var(--espacamento-medio) var(--espacamento-grande);
+    font-size: var(--fonte-tamanho-medio);
+  }
+}
+
+// Formulários
+.campo {
+  margin-bottom: var(--espacamento-medio);
+  
+  &__label {
+    display: block;
+    margin-bottom: var(--espacamento-pequeno);
+    font-weight: 500;
+  }
+  
+  &__input {
+    width: 100%;
+    padding: var(--espacamento-pequeno);
+    border: 1px solid var(--cor-cinza);
+    border-radius: var(--borda-raio);
+    transition: var(--transicao-padrao);
+    
+    &:focus {
+      outline: none;
+      border-color: var(--cor-primaria);
+      box-shadow: 0 0 0 2px rgba(0, 0, 163, 0.2);
+    }
+  }
+  
+  &__erro {
+    color: var(--cor-erro);
+    font-size: var(--fonte-tamanho-pequeno);
+    margin-top: var(--espacamento-pequeno);
+  }
+}
+
+// Grades
+.grade {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--espacamento-medio);
+  
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Cartões
+.cartao {
+  background-color: var(--cor-branco);
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra-pequena);
+  overflow: hidden;
+  transition: var(--transicao-padrao);
+  
+  &:hover {
+    box-shadow: var(--sombra-media);
+    transform: translateY(-2px);
+  }
+  
+  &__conteudo {
+    padding: var(--espacamento-medio);
+  }
+  
+  &__titulo {
+    margin-bottom: var(--espacamento-pequeno);
+    font-size: var(--fonte-tamanho-medio);
+  }
+  
+  &__descricao {
+    color: var(--cor-cinza-escuro);
+    margin-bottom: var(--espacamento-medio);
+  }
+  
+  &__rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+// Alerta
+.alerta {
+  padding: var(--espacamento-medio);
+  border-radius: var(--borda-raio);
+  margin-bottom: var(--espacamento-medio);
+  
+  &--sucesso {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--cor-sucesso);
+    border: 1px solid var(--cor-sucesso);
+  }
+  
+  &--alerta {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--cor-alerta);
+    border: 1px solid var(--cor-alerta);
+  }
+  
+  &--erro {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--cor-erro);
+    border: 1px solid var(--cor-erro);
+  }
+}
+
+// Badges
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: var(--fonte-tamanho-pequeno);
+  font-weight: 500;
+  
+  &--primario {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+  }
+  
+  &--secundario {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+  }
+  
+  &--sucesso {
+    background-color: var(--cor-sucesso);
+    color: var(--cor-branco);
+  }
+  
+  &--alerta {
+    background-color: var(--cor-alerta);
+    color: var(--cor-preto);
+  }
+  
+  &--erro {
+    background-color: var(--cor-erro);
+    color: var(--cor-branco);
+  }
+}
