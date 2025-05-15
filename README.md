@@ -33,31 +33,38 @@ C#
 
 ## Estrutura do Projeto:
 ```
-FitShop/
-├── index.html                  # Página inicial
-├── produto.html                # Página do produto
-├── carrinho.html               # Carrinho de compras
-├── resultado-pesquisa.html     # Resultado da busca
-│
-├── adm/
-│   ├── painel.html             # Painel administrativo
-│   ├── cadastro-produto.html   # Cadastro de produto
-│   ├── editar-produto.html     # Edição de produto
-│   ├── cadastro-categoria.html # Cadastro de categoria
-│   └── editar-categoria.html   # Edição de categoria
-│
-├── assets/
-│   ├── css/
-│   │   ├── style.css           # Estilos gerais
-│   │   └── adm.css             # Estilos do painel administrativo
-│   │
-│   ├── js/
-│   │   ├── main.js             # Scripts gerais do site
-│   │   └── adm.js              # Scripts para área administrativa
-│   │
-│   └── img/
-│       ├── produtos/           # Imagens dos produtos
-│       └── logos/              # Logos e ícones
-│
-└── README.md
+├── public/
+│   └── logoFitShop.svg
+├── src/
+│   ├── assets/
+│   │   └── scss/
+│   │       └── main.scss
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Cabecalho.vue
+│   │   │   └── Rodape.vue
+│   │   └── ui/
+│   │       ├── CarrinhoItem.vue
+│   │       ├── CategoriaMenu.vue
+│   │       └── ProdutoCard.vue
+│   ├── pages/
+│   │   ├── admin/
+│   │   │   ├── Categorias.vue
+│   │   │   ├── EditarCategoria.vue
+│   │   │   ├── EditarProduto.vue
+│   │   │   ├── Estoque.vue
+│   │   │   ├── Produtos.vue
+│   │   │   └── Admin.vue
+│   │   ├── Busca.vue
+│   │   ├── Carrinho.vue
+│   │   ├── Home.vue
+│   │   └── Produto.vue
+│   ├── services/
+│   │   └── api.ts
+│   ├── stores/
+│   │   └── carrinho.ts
+│   ├── App.vue
+│   ├── main.ts
+│   └── style.css
+└── index.html
 ```
