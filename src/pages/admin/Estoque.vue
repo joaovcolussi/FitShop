@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import api from '../../services/api'
+import api_whatsapp from '../../services/api_whatsapp'
 
 const produtos = ref<any[]>([])
 const carregando = ref(true)
@@ -12,7 +12,7 @@ const carregarProdutos = async () => {
   carregando.value = true
   
   try {
-    produtos.value = await api.getProdutos()
+    produtos.value = await api_whatsapp.getProdutos()
   } catch (error) {
     console.error('Erro ao carregar produtos', error)
     erro.value = 'Erro ao carregar a lista de produtos.'
@@ -28,7 +28,7 @@ const atualizarEstoque = async (produto: any) => {
   erro.value = ''
   
   try {
-    await api.atualizarProduto(produto.id, { estoque: produto.estoque })
+    await api_whatsapp.atualizarProduto(produto.id, { estoque: produto.estoque })
     
     sucesso.value = true
     setTimeout(() => {

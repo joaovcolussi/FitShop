@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import ProdutoCard from '../components/ui/ProdutoCard.vue'
-import api from '../services/api'
+import api_whatsapp from '../services/api_whatsapp'
 
 const route = useRoute()
 const produtos = ref<any[]>([])

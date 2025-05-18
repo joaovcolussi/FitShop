@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '../../services/api'
+import api_whatsapp from '../../services/api_whatsapp'
 
 const router = useRouter()
 const produtos = ref<any[]>([])
@@ -15,7 +15,7 @@ const carregarProdutos = async () => {
   carregando.value = true
   
   try {
-    produtos.value = await api.getProdutos()
+    produtos.value = await api_whatsapp.getProdutos()
   } catch (error) {
     console.error('Erro ao carregar produtos', error)
     erro.value = 'Erro ao carregar a lista de produtos.'
@@ -46,7 +46,7 @@ const confirmarExclusao = async () => {
   if (!produtoParaExcluir.value) return
   
   try {
-    await api.excluirProduto(produtoParaExcluir.value)
+    await api_whatsapp.excluirProduto(produtoParaExcluir.value)
     produtos.value = produtos.value.filter(p => p.id !== produtoParaExcluir.value)
     sucessoExclusao.value = true
     setTimeout(() => {

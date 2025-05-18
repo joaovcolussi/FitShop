@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import api from '../../services/api'
+import api_whatsapp from '../../services/api_whatsapp'
 
 const route = useRoute()
 const router = useRouter()
@@ -46,13 +46,13 @@ const carregarDados = async () => {
   
   try {
     // Carrega categorias
-    categorias.value = await api.getCategorias()
+    categorias.value = await api_whatsapp.getCategorias()
     
     // Carrega produto se for edição
     if (modoEdicao.value) {
       const id = Number(route.params.id)
       if (!isNaN(id)) {
-        const produtoCarregado = await api.getProduto(id)
+        const produtoCarregado = await api_whatsapp.getProduto(id)
         produto.value = { ...produtoCarregado }
         imagemPreview.value = produtoCarregado.imagem
       }
@@ -101,13 +101,13 @@ const salvarProduto = async () => {
     
     // Salva o produto
     if (modoEdicao.value) {
-      await api.atualizarProduto(produto.value.id, produto.value)
+      await api_whatsapp.atualizarProduto(produto.value.id, produto.value)
       sucesso.value = true
       setTimeout(() => {
         router.push('/admin/produtos')
       }, 1500)
     } else {
-      await api.criarProduto(produto.value)
+      await api_whatsapp.criarProduto(produto.value)
       sucesso.value = true
       setTimeout(() => {
         router.push('/admin/produtos')

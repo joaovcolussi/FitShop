@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '../../services/api'
+import api_whatsapp from '../../services/api_whatsapp'
 
 const router = useRouter()
 const categorias = ref<any[]>([])
@@ -15,7 +15,7 @@ const carregarCategorias = async () => {
   carregando.value = true
   
   try {
-    categorias.value = await api.getCategorias()
+    categorias.value = await api_whatsapp.getCategorias()
   } catch (error) {
     console.error('Erro ao carregar categorias', error)
     erro.value = 'Erro ao carregar a lista de categorias.'
@@ -46,7 +46,7 @@ const confirmarExclusao = async () => {
   if (!categoriaParaExcluir.value) return
   
   try {
-    await api.excluirCategoria(categoriaParaExcluir.value)
+    await api_whatsapp.excluirCategoria(categoriaParaExcluir.value)
     categorias.value = categorias.value.filter(c => c.id !== categoriaParaExcluir.value)
     sucessoExclusao.value = true
     setTimeout(() => {

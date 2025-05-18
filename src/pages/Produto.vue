@@ -2,7 +2,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCarrinhoStore } from '../stores/carrinho'
-import api from '../services/api'
+import api_whatsapp from '../services/api_whatsapp'
 
 const route = useRoute()
 const router = useRouter()
@@ -36,7 +36,7 @@ const carregarProduto = async () => {
   
   try {
     carregando.value = true
-    produto.value = await api.getProduto(produtoId.value)
+    produto.value = await api_whatsapp.getProduto(produtoId.value)
   } catch (error) {
     console.error('Erro ao carregar produto', error)
     erro.value = 'Erro ao carregar o produto. Tente novamente.'

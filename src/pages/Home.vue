@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import ProdutoCard from '../components/ui/ProdutoCard.vue'
-import api from '../services/api'
+import api_whatsapp from '../services/api_whatsapp'
 
 const produtos = ref<any[]>([])
 const carregando = ref(true)
 
 const carregarDados = async () => {
   try {
-    const produtosData = await api.getProdutos()
+    const produtosData = await api_whatsapp.getProdutos()
     produtos.value = produtosData
   } catch (error) {
     console.error('Erro ao carregar dados', error)

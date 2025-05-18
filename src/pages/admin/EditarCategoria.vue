@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import api from '../../services/api'
+import api_whatsapp from '../../services/api_whatsapp'
 
 const route = useRoute()
 const router = useRouter()
@@ -43,7 +43,7 @@ const carregarCategoria = async () => {
   try {
     const id = Number(route.params.id)
     if (!isNaN(id)) {
-      const categorias = await api.getCategorias()
+      const categorias = await api_whatsapp.getCategorias()
       const categoriaEncontrada = categorias.find((c: any) => c.id === id)
       
       if (categoriaEncontrada) {
@@ -75,9 +75,9 @@ const salvarCategoria = async () => {
   
   try {
     if (modoEdicao.value) {
-      await api.atualizarCategoria(categoria.value.id, categoria.value)
+      await api_whatsapp.atualizarCategoria(categoria.value.id, categoria.value)
     } else {
-      await api.criarCategoria(categoria.value)
+      await api_whatsapp.criarCategoria(categoria.value)
     }
     
     sucesso.value = true

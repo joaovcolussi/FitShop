@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCarrinhoStore } from '../stores/carrinho'
 import CarrinhoItem from '../components/ui/CarrinhoItem.vue'
-import api from '../services/api'
+import api_whatsapp from '../services/api_whatsapp'
 
 const router = useRouter()
 const carrinhoStore = useCarrinhoStore()
