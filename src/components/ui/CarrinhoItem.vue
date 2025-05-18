@@ -47,7 +47,6 @@ const removerItem = () => {
     <div class="carrinho-item__info">
       <h3 class="carrinho-item__nome">{{ item.nome }}</h3>
       <div class="carrinho-item__preco">
-        {{ formatarPreco(item.preco) }}
       </div>
     </div>
     

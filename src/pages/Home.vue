@@ -1,24 +1,56 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import ProdutoCard from '../components/ui/ProdutoCard.vue'
-import api_whatsapp from '../services/api_whatsapp'
+import ProdutoCard from '../components/ui/ProdutoCard.vue' // Ajuste o caminho se necessário
+import api_whatsapp from '../services/api_whatsapp' // Ajuste o caminho se necessário
 
-const produtos = ref<any[]>([])
-const carregando = ref(true)
+const produtosDestaque = ref<any[]>([])
+const produtosPromocoes = ref<any[]>([])
+const produtosNovidades = ref<any[]>([])
 
-const carregarDados = async () => {
+const carregandoDestaques = ref(true)
+const carregandoPromocoes = ref(true)
+const carregandoNovidades = ref(true)
+
+const carregarDadosDestaque = async () => {
   try {
-    const produtosData = await api_whatsapp.getProdutos()
-    produtos.value = produtosData
+    // A lógica original carregava todos os produtos para "Destaque". Mantendo isso.
+    const produtosData = await api_whatsapp.getProdutos() 
+    produtosDestaque.value = produtosData
   } catch (error) {
-    console.error('Erro ao carregar dados', error)
+    console.error('Erro ao carregar produtos em destaque', error)
   } finally {
-    carregando.value = false
+    carregandoDestaques.value = false
+  }
+}
+
+const carregarPromocoes = async () => {
+  try {
+    const promocoesData = await api_whatsapp.getPromocoes()
+    produtosPromocoes.value = promocoesData
+  } catch (error) {
+    console.error('Erro ao carregar promoções', error)
+    produtosPromocoes.value = [] // Garante que não fique indefinido em caso de erro
+  } finally {
+    carregandoPromocoes.value = false
+  }
+}
+
+const carregarNovidades = async () => {
+  try {
+    const novidadesData = await api_whatsapp.getNovidades()
+    produtosNovidades.value = novidadesData
+  } catch (error) {
+    console.error('Erro ao carregar novidades', error)
+    produtosNovidades.value = [] // Garante que não fique indefinido em caso de erro
+  } finally {
+    carregandoNovidades.value = false
   }
 }
 
 onMounted(() => {
-  carregarDados()
+  carregarDadosDestaque()
+  carregarPromocoes()
+  carregarNovidades()
 })
 </script>
 
@@ -41,20 +73,23 @@ onMounted(() => {
           <router-link to="/busca" class="secao__link">Ver todos</router-link>
         </div>
         
-        <div v-if="carregando" class="carregando">
-          <p>Carregando produtos...</p>
+        <div v-if="carregandoDestaques" class="carregando">
+          <p>Carregando produtos em destaque...</p>
         </div>
         
-        <div v-else class="produtos-carrossel">
+        <div v-else-if="produtosDestaque.length > 0" class="produtos-carrossel">
           <div class="produtos-carrossel__container">
             <div 
-              v-for="produto in produtos" 
-              :key="produto.id"
+              v-for="produto in produtosDestaque" 
+              :key="`destaque-${produto.id}`"
               class="produtos-carrossel__item"
             >
               <ProdutoCard :produto="produto" />
             </div>
           </div>
+        </div>
+        <div v-else class="secao__conteudo">
+          <p>Nenhum produto em destaque disponível no momento.</p>
         </div>
       </section>
 
@@ -62,7 +97,22 @@ onMounted(() => {
         <div class="secao__cabecalho">
           <h2 class="secao__titulo">Promoções</h2>
           </div>
-        <div class="secao__conteudo">
+        
+        <div v-if="carregandoPromocoes" class="carregando">
+          <p>Carregando promoções...</p>
+        </div>
+        
+        <div v-else-if="produtosPromocoes.length > 0" class="produtos-carrossel">
+          <div class="produtos-carrossel__container">
+            <div 
+              v-for="produto in produtosPromocoes" 
+              :key="`promocao-${produto.id}`"
+              class="produtos-carrossel__item"
+            >
+              <ProdutoCard :produto="produto" /> </div>
+          </div>
+        </div>
+        <div v-else class="secao__conteudo">
           <p>Nenhuma promoção disponível no momento.</p>
         </div>
       </section>
@@ -71,7 +121,21 @@ onMounted(() => {
         <div class="secao__cabecalho">
           <h2 class="secao__titulo">Novidades</h2>
           </div>
-        <div class="secao__conteudo">
+        <div v-if="carregandoNovidades" class="carregando">
+          <p>Carregando novidades...</p>
+        </div>
+        <div v-else-if="produtosNovidades.length > 0" class="produtos-carrossel">
+          <div class="produtos-carrossel__container">
+            <div 
+              v-for="produto in produtosNovidades" 
+              :key="`novidade-${produto.id}`"
+              class="produtos-carrossel__item"
+            >
+              <ProdutoCard :produto="produto" />
+            </div>
+          </div>
+        </div>
+        <div v-else class="secao__conteudo">
           <p>Nenhuma novidade disponível no momento.</p>
         </div>
       </section>
@@ -94,6 +158,9 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+// Seus estilos existentes. Eles devem funcionar bem com as novas seções,
+// já que usam as mesmas classes de carrossel.
+
 .home {
   padding-top: 0;
 }

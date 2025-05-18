@@ -40,27 +40,6 @@ const toggleMenuCategoria = () => {
               class="busca__input" 
               placeholder="O que você procura?"
             />
-            <div class="busca__categoria">
-              <button 
-                type="button" 
-                class="busca__categoria-botao" 
-                @click="toggleMenuCategoria"
-              >
-                Categorias
-                <span 
-                  class="busca__categoria-icone"
-                  :class="{ 'busca__categoria-icone--aberto': menuCategoriaAberto }"
-                >
-                  ▼
-                </span>
-              </button>
-              <CategoriaMenu 
-                v-if="menuCategoriaAberto" 
-                @fechar="menuCategoriaAberto = false"
-                posicaoAbsoluta
-                class="busca__categoria-menu"
-              />
-            </div>
             <button type="submit" class="busca__botao">
               <span class="busca__botao-texto">Buscar</span>
             </button>

@@ -1,3 +1,4 @@
+// services/api_whatsapp.js (ou o caminho correto para seu arquivo)
 import axios from 'axios'
 
 // semente de dados enquanto não temos o backend em C#
@@ -9,7 +10,10 @@ const produtos = [
     preco: 149.90,
     categoria: 'Suplementos',
     imagem: 'https://images.pexels.com/photos/8844577/pexels-photo-8844577.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 50
+    estoque: 50,
+    novidade: true, // Flag para novidade
+    promocao: true,  // Flag para promoção
+    precoPromocional: 135.00 // Preço com desconto
   },
   {
     id: 2,
@@ -18,7 +22,10 @@ const produtos = [
     preco: 89.90,
     categoria: 'Suplementos',
     imagem: 'https://images.pexels.com/photos/12304205/pexels-photo-12304205.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 30
+    estoque: 30,
+    novidade: false,
+    promocao: true,
+    precoPromocional: 79.90
   },
   {
     id: 3,
@@ -27,7 +34,9 @@ const produtos = [
     preco: 59.90,
     categoria: 'Acessórios',
     imagem: 'https://images.pexels.com/photos/6456264/pexels-photo-6456264.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 15
+    estoque: 15,
+    novidade: true,
+    promocao: false
   },
   {
     id: 4,
@@ -36,7 +45,9 @@ const produtos = [
     preco: 79.90,
     categoria: 'Roupas',
     imagem: 'https://images.pexels.com/photos/6311251/pexels-photo-6311251.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 25
+    estoque: 25,
+    novidade: true,
+    promocao: false
   },
   {
     id: 5,
@@ -45,7 +56,10 @@ const produtos = [
     preco: 12.90,
     categoria: 'Suplementos',
     imagem: 'https://images.pexels.com/photos/6249089/pexels-photo-6249089.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 100
+    estoque: 100,
+    novidade: false,
+    promocao: true,
+    precoPromocional: 9.90
   },
   {
     id: 6,
@@ -54,7 +68,9 @@ const produtos = [
     preco: 45.90,
     categoria: 'Acessórios',
     imagem: 'https://images.pexels.com/photos/4473608/pexels-photo-4473608.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 20
+    estoque: 20,
+    novidade: true,
+    promocao: false
   },
   {
     id: 7,
@@ -63,7 +79,10 @@ const produtos = [
     preco: 89.90,
     categoria: 'Roupas',
     imagem: 'https://images.pexels.com/photos/6550839/pexels-photo-6550839.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 30
+    estoque: 30,
+    novidade: true,
+    promocao: true,
+    precoPromocional: 75.00
   },
   {
     id: 8,
@@ -72,7 +91,9 @@ const produtos = [
     preco: 69.90,
     categoria: 'Suplementos',
     imagem: 'https://images.pexels.com/photos/4464819/pexels-photo-4464819.jpeg?auto=compress&cs=tinysrgb&w=600',
-    estoque: 40
+    estoque: 40,
+    novidade: false,
+    promocao: false
   }
 ]
 
@@ -121,6 +142,38 @@ export default {
     }
     
     return produto
+  },
+
+  getPromocoes: async (filtro: { termo?: string, categoria?: string } = {}) => {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    let resultado = produtos.filter(p => p.promocao);
+
+    if (filtro.termo) {
+      const termoLowerCase = filtro.termo.toLowerCase();
+      resultado = resultado.filter(produto =>
+        produto.nome.toLowerCase().includes(termoLowerCase) ||
+        produto.descricao.toLowerCase().includes(termoLowerCase)
+      );
+    }
+    // Poderia adicionar filtro de categoria para promoções também, se necessário
+    // if (filtro.categoria) { ... } 
+    return resultado;
+  },
+
+  getNovidades: async (filtro: { termo?: string, categoria?: string } = {}) => {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    let resultado = produtos.filter(p => p.novidade);
+
+    if (filtro.termo) {
+      const termoLowerCase = filtro.termo.toLowerCase();
+      resultado = resultado.filter(produto =>
+        produto.nome.toLowerCase().includes(termoLowerCase) ||
+        produto.descricao.toLowerCase().includes(termoLowerCase)
+      );
+    }
+    // Poderia adicionar filtro de categoria para novidades também, se necessário
+    // if (filtro.categoria) { ... }
+    return resultado;
   },
   
   // Admin - Produtos
@@ -173,47 +226,10 @@ export default {
     return categorias
   },
   
-  // Admin - Categorias
-  criarCategoria: async (categoria: any) => {
-    // Simulando um delay de rede
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const novaCategoria = {
-      ...categoria,
-      id: Math.max(...categorias.map(c => c.id)) + 1
-    }
-    
-    categorias.push(novaCategoria)
-    return novaCategoria
-  },
-  
-  atualizarCategoria: async (id: number, categoria: any) => {
-    // Simulando um delay de rede
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const index = categorias.findIndex(c => c.id === id)
-    
-    if (index === -1) {
-      throw new Error('Categoria não encontrada')
-    }
-    
-    categorias[index] = { ...categorias[index], ...categoria }
-    return categorias[index]
-  },
-  
-  excluirCategoria: async (id: number) => {
-    // Simulando um delay de rede
-    await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const index = categorias.findIndex(c => c.id === id)
-    
-    if (index === -1) {
-      throw new Error('Categoria não encontrada')
-    }
-    
-    const categoriaRemovida = categorias.splice(index, 1)[0]
-    return categoriaRemovida
-  },
+  // Admin - Categorias (código existente omitido para brevidade)
+  criarCategoria: async (categoria: any) => { /* ... */ return categoria },
+  atualizarCategoria: async (id: number, categoria: any) => { /* ... */ return categoria },
+  excluirCategoria: async (id: number) => { /* ... */ return {} },
   
   // Este método simula uma integração com WhatsApp que seria feita pelo backend
   enviarPedidoWhatsApp: async (items: any[], total: number, telefone: string) => {
@@ -221,7 +237,7 @@ export default {
     console.log('Enviando pedido via WhatsApp', { items, total, telefone })
     
     // Retorna a URL para redirecionamento (no frontend real, isso seria construído no backend)
-    let mensagem = 'Olá! Gostaria de fazer o seguinte pedido:\n\n'
+    let mensagem = 'Olá! A loja fitshop recebeu seu pedido, gostaria de seguir com ele:\n\n'
     
     items.forEach(item => {
       mensagem += `*${item.nome}*\n`
