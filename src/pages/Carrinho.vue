@@ -56,7 +56,7 @@ const finalizarCompra = async () => {
   carregando.value = true
   
   try {
-    const resultado = await api.enviarPedidoWhatsApp(
+    const resultado = await api_whatsapp.enviarPedidoWhatsApp(
       carrinhoStore.itens,
       carrinhoStore.valorTotal,
       telefone.value

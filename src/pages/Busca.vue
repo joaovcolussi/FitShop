@@ -25,7 +25,7 @@ const buscarProdutos = async () => {
       filtro.categoria = categoriaAtiva.value
     }
     
-    const resultados = await api.getProdutos(filtro)
+    const resultados = await api_whatsapp.getProdutos(filtro)
     produtos.value = resultados
   } catch (error) {
     console.error('Erro ao buscar produtos', error)
@@ -36,7 +36,7 @@ const buscarProdutos = async () => {
 
 const carregarCategorias = async () => {
   try {
-    const resultado = await api.getCategorias()
+    const resultado = await api_whatsapp.getCategorias()
     categorias.value = resultado
   } catch (error) {
     console.error('Erro ao carregar categorias', error)

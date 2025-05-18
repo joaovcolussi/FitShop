@@ -15,7 +15,7 @@ const carregarCategorias = async () => {
   carregando.value = true
   
   try {
-    categorias.value = await api_whatsapp.getCategorias()
+    categorias.value = await api_whatsagitpp.getCategorias()
   } catch (error) {
     console.error('Erro ao carregar categorias', error)
     erro.value = 'Erro ao carregar a lista de categorias.'
