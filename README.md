@@ -1,7 +1,14 @@
 # 📌 Projeto: FitShop com HTML, CSS e JavaScript
 🔗 [Link para o repositório Github](https://github.com/joaovcolussi/FitShop)
+##  Integrantes do Grupo :
 
+ Alexandre Gomes , RA: 1986088  
+ João Victor Colussi, RA: 2003753  
+ Vinicius Ferreira Press,RA: 2003646  
+ Miguel Ramos Pires de Oliveira,RA: 1999181
+ Silvio Alex de Souza Leal,RA: 2001906
 
+ 
 ## Iniciar o projeto:
 ```
 npm install
